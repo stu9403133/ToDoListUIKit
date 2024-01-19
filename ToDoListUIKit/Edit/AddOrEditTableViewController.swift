@@ -32,6 +32,11 @@ class AddOrEditTableViewController: UITableViewController {
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        titleLabel.becomeFirstResponder()
+    }
+    
     // MARK: - Table view data source
     func updateUI() {
         if let editList {

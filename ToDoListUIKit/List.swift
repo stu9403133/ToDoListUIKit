@@ -31,12 +31,16 @@ struct ToDoList: Codable {
         print(content!)
         let decoder = JSONDecoder()
         result = try! decoder.decode([ToDoList].self, from: data)
-        
+        if result.isEmpty {
+            let newlists = [ToDoList(title: "開始你的ToDoList", priority: Priority.low, detail: "")]
+            let data = try? JSONEncoder().encode(newlists)
+            UserDefaults.standard.set(data, forKey: "lists")
+            return newlists
+        }
         return result
     }
     
 }
-
 
 enum Priority: String, Codable {
     case urgent = "Red"
