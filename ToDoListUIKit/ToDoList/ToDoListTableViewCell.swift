@@ -9,6 +9,9 @@ import UIKit
 
 class ToDoListTableViewCell: UITableViewCell {
     
+    
+    @IBOutlet weak var listImage: UIImageView!
+    
     @IBOutlet weak var showPriorityImage: UIImageView!
     
     @IBOutlet weak var todoTitle: UILabel!

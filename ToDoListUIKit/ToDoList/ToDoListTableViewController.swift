@@ -9,7 +9,7 @@ import UIKit
 
 class ToDoListTableViewController: UITableViewController {
 
-    var lists = [ToDoList](){
+    var lists = [ToDoList]() {
         didSet{
             ToDoList.saveLists(lists)
         }
@@ -24,9 +24,10 @@ class ToDoListTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     func updateData() {
-//        UserDefaults.standard.removeObject(forKey: "lists")
+        UserDefaults.standard.removeObject(forKey: "lists")
         if let lists = ToDoList.readLists() {
             self.lists = lists
+            print("updateData(): 以解碼", lists)
         }
         tableView.reloadData()
     }
@@ -52,8 +53,16 @@ class ToDoListTableViewController: UITableViewController {
         cell.todoTitle.text = lists[indexPath.row].title
         cell.showPriorityImage.tintColor = UIColor(named: "\(lists[indexPath.row].priority.rawValue)")
         cell.detailTextLabel?.text = lists[indexPath.row].detail
+        guard let imageFileName = lists[indexPath.row].imageFileName else {
+            cell.listImage.image = UIImage(systemName: "folder")
+            return cell
+        }
+        let url = URL.homeDirectory.appending(path: imageFileName).appendingPathExtension("jpeg")
+        cell.listImage.image = UIImage(contentsOfFile: url.path)
+        cell.listImage.contentMode = .scaleAspectFill
         return cell
-    }
+        }
+    
     
 
     @IBSegueAction func editList(_ coder: NSCoder) -> AddOrEditTableViewController? {
@@ -84,9 +93,12 @@ class ToDoListTableViewController: UITableViewController {
     
     // 刪除表單
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
+//        try? FileManager.default.removeItem(at: lists[indexPath.row].photoURL!)
         lists.remove(at: indexPath.row)
         tableView.deleteRows(at: [indexPath], with: .automatic)
         tableView.reloadData()
+        print("after deleted", lists)
     }
     
     /*

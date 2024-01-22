@@ -11,6 +11,11 @@ struct ToDoList: Codable {
     var title: String
     var priority: Priority
     var detail: String
+    var imageFileName: String?
+    var isFinish: Bool?
+    var photoURL: URL? {
+        URL.homeDirectory.appendingPathComponent(imageFileName ?? "")
+    }
     
     static func saveLists(_ lists:[ToDoList]) {
         do{
@@ -28,7 +33,7 @@ struct ToDoList: Codable {
             return newlists
         }
         let content = String(data: data, encoding: .utf8)
-        print(content!)
+        print("readLists(): 未解碼",content!)
         let decoder = JSONDecoder()
         result = try! decoder.decode([ToDoList].self, from: data)
         if result.isEmpty {
