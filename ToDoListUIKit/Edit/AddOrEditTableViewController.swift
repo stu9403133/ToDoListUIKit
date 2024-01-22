@@ -93,7 +93,10 @@ class AddOrEditTableViewController: UITableViewController, UIImagePickerControll
         }
         
         let cameraAction = UIAlertAction(title: "相機", style: .default) { _ in
-            
+            let cameraController = UIImagePickerController()
+            cameraController.sourceType = .camera
+            cameraController.delegate = self
+            self.present(cameraController, animated: true)
         }
         let cancelAction = UIAlertAction(title: "取消", style: .cancel)
         picAlertController.addAction(photoLibraryAction)
