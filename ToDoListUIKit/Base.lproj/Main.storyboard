@@ -218,7 +218,6 @@
                         <connections>
                             <outlet property="dataSource" destination="Wka-rk-GfF" id="Upk-BA-OJb"/>
                             <outlet property="delegate" destination="Wka-rk-GfF" id="U77-Tj-es2"/>
-                            <outletCollection property="gestureRecognizers" destination="ws8-kG-YJT" appends="YES" id="nZe-yj-A51"/>
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="mCw-Pg-XYd">
@@ -229,7 +228,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Save"/>
                                 <connections>
-                                    <segue destination="9nf-t0-fXh" kind="unwind" unwindAction="unwindToList:" id="3yQ-mS-Vgc"/>
+                                    <action selector="saveButton:" destination="Wka-rk-GfF" eventType="touchUpInside" id="6Kj-L8-ega"/>
                                 </connections>
                             </button>
                         </barButtonItem>
@@ -242,14 +241,10 @@
                         <outlet property="prioirtyCircle" destination="kN1-0R-mBU" id="tvI-As-p5O"/>
                         <outlet property="titleLabel" destination="qXS-lv-dzJ" id="om2-eY-z1c"/>
                         <outlet property="urgentButton" destination="jFm-1k-qlk" id="18P-Zr-hdC"/>
+                        <segue destination="9nf-t0-fXh" kind="unwind" identifier="unwindBySave" unwindAction="unwindToList:" id="Bue-Xh-Hd9"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q7K-eD-RbK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="ws8-kG-YJT">
-                    <connections>
-                        <action selector="tapViewCloseKeyboard:" destination="Wka-rk-GfF" id="XQV-DH-MoS"/>
-                    </connections>
-                </tapGestureRecognizer>
                 <exit id="9nf-t0-fXh" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1655.7251908396945" y="-115.49295774647888"/>
@@ -274,7 +269,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="7DA-BD-srd"/>
+        <segue reference="Ndc-Jw-hYT"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="camera" catalog="system" width="128" height="93"/>
