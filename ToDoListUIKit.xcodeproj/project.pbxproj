@@ -78,8 +78,8 @@
 		208434A92B56A86000BBFE3D /* ToDoList */ = {
 			isa = PBXGroup;
 			children = (
-				2084349F2B56900000BBFE3D /* ToDoListTableViewController.swift */,
 				208434A52B56986C00BBFE3D /* ToDoListTableViewCell.swift */,
+				2084349F2B56900000BBFE3D /* ToDoListTableViewController.swift */,
 			);
 			path = ToDoList;
 			sourceTree = "<group>";
